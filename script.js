@@ -12,16 +12,22 @@ console.log(now)
 //make timeblocks
 for (var i = 9; i < 19; i++) {
     var newTimeBlock = $("<div>")
-    newTimeBlock.attr("class", "row col-8 description")
-    newTimeBlock.attr("id", "description")
+    newTimeBlock.attr("class", "row")
     newTimeBlock.attr("id", "time" + i)
     containerEl.append(newTimeBlock)
 
-    var newHour = $("<textarea>")
+    var newHour = $("<aside>")
     newHour.attr("class", "hour col-2")
     newHour.attr("id", "hour" + i)
     newHour.text(i)
     newTimeBlock.append(newHour)
+
+    var textBox = $("<textarea>")
+    textBox.attr("class", "description col-8")
+    textBox.attr("id", "textTime" + i)
+    textBox.val("Today's Plans are...")
+    newTimeBlock.append(textBox)
+
 }
 console.log(dt.toLocaleString(DateTime.DATE_SHORT))
 
