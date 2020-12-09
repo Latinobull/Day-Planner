@@ -16,6 +16,12 @@ for (var i = 9; i < 19; i++) {
     newTimeBlock.attr("id", "description")
     newTimeBlock.attr("id", "time" + i)
     containerEl.append(newTimeBlock)
+
+    var newHour = $("<textarea>")
+    newHour.attr("class", "hour col-2")
+    newHour.attr("id", "hour" + i)
+    newHour.text(i)
+    newTimeBlock.append(newHour)
 }
 console.log(dt.toLocaleString(DateTime.DATE_SHORT))
 
