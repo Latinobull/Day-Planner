@@ -1,12 +1,18 @@
 //variables
 var currentDayEl = $("#currentDay")
 var containerEl = $(".container")
+var userStorage = window.localStorage
 var now = luxon.DateTime.local(2020, 5, 15, 8, 35)
-var dt = luxon.DateTime.local(2017, 5, 15, 8, 30);
-
-console.log(now)
+var dt = luxon.DateTime.local()
+var currentHour = dt.hour
+console.log(userStorage)
+console.log(dt.toLocaleString(luxon.DateTime.DATETIME_MED))
 
 // current day
+
+    var todayDate = dt.toLocaleString(luxon.DateTime.DATETIME_MED)
+    currentDayEl.text(todayDate)
+    console.log(todayDate)
 
 
 //make timeblocks
@@ -25,17 +31,17 @@ for (var i = 9; i < 19; i++) {
     var textBox = $("<textarea>")
     textBox.attr("class", "description col-8")
     textBox.attr("id", "textTime" + i)
-    textBox.val("Today's Plans are...")
+    textBox.attr("placeholder","Today's Plans are...")
     newTimeBlock.append(textBox)
 
     var save = $("<button>")
     save.attr("class", "saveBtn col-2")
     save.attr("id", "savebutton" + i)
-    save.html("<i class= 'fas fa-save'\> <br> Save<\i>")
+    save.html("<i class= 'fas fa-save'> <br> Save</i>")
     newTimeBlock.append(save)
 
 }
-console.log(dt.toLocaleString(DateTime.DATE_SHORT))
+
 
 
 
