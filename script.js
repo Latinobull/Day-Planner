@@ -5,14 +5,12 @@ var userStorage = window.localStorage
 var now = luxon.DateTime.local(2020, 5, 15, 8, 35)
 var dt = luxon.DateTime.local()
 var currentHour = dt.hour
-
+console.log(currentHour)
 // current day
-    var updateTime = setInterval(update(), 1000)
-    function update() {
-    let todayDate = dt.toLocaleString()
-    currentDayEl.html(todayDate)
-    console.log(todayDate)
-    }
+    let todayDate =  Object.assign(luxon.DateTime.DATE_FULL, { weekday: "long"})
+    currentDayEl.text(JSON.stringify(todayDate))
+    console.log( dt.toLocaleString(todayDate))
+   
 
 //make timeblocks
 for (var i = 9; i < 19; i++) {
