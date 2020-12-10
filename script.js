@@ -7,7 +7,7 @@ var currentHour = dt.hour
 console.log(currentHour)
 // current day
     let todayDate =  Object.assign(luxon.DateTime.DATE_FULL, { weekday: "long"})
-    currentDayEl.text(JSON.stringify(todayDate))
+    currentDayEl.text(JSON.stringify(dt.toLocaleString(luxon.DateTime.DATE_FULL)))
     console.log( dt.toLocaleString(todayDate))
    
 
@@ -43,9 +43,9 @@ for (var i = 9; i < 19; i++) {
 //css timeblock
 function colorHours() {
 
-    if(hour < currentHour) {
+    if(newHour.value < currentHour) {
         eventSlot.attr("class", "past description col-10")
-        console.log(hour)
+        console.log(newHour.val()) 
     }else if (hour == currentHour) {
         eventSlot.attr("class", "present description col-10")
     }else if (hour > currentHour) {
