@@ -2,7 +2,6 @@
 var currentDayEl = $("#currentDay")
 var containerEl = $(".container")
 var userStorage = window.localStorage
-var now = luxon.DateTime.local(2020, 5, 15, 8, 35)
 var dt = luxon.DateTime.local()
 var currentHour = dt.hour
 console.log(currentHour)
@@ -22,8 +21,10 @@ for (var i = 9; i < 19; i++) {
     var newHour = $("<aside>")
     newHour.attr("class", "hour col-2")
     newHour.attr("id", "hour")
+    newHour.attr("value", i)
     newHour.text(i)
     newTimeBlock.append(newHour)
+    console.log(newHour.val)
 
     var textBox = $("<textarea>")
     textBox.attr("class", "description col-8")
@@ -37,11 +38,10 @@ for (var i = 9; i < 19; i++) {
     save.html("<i class= 'fas fa-save'> <br> Save</i>")
     newTimeBlock.append(save)
 
-    colorHours("#hour", textBox)
 }
 
 //css timeblock
-function colorHours(hour, eventSlot) {
+function colorHours() {
 
     if(hour < currentHour) {
         eventSlot.attr("class", "past description col-10")
@@ -55,3 +55,12 @@ function colorHours(hour, eventSlot) {
 
 
 //local storage
+function getUserEvents() {
+    for (var o = 0; o < containerEl.children().length; o++) {
+        var hoursTakenOut =  containerEl.children().get(o).children[0].text()
+        var entrySet = containerEl.children().get(o).children[1]
+        if (scheduleStorage.getItem(hoursTakenOut) != undefined) {
+            entrySet.val(containerEl.getItem(hoursTakenOut))
+        }
+    }
+}
