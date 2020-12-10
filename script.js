@@ -57,19 +57,25 @@ function colorHours() {
 //local storage
 function getUserEvents() {
     for (var o = 0; o < containerEl.children().length; o++) {
-        var hoursTakenOut =  containerEl.children().get(o).children[0].text()
+        var hoursTakenOut =  containerEl.children().get(o).children[0].textContent
         var entrySet = containerEl.children().get(o).children[1]
-        if (scheduleStorage.getItem(hoursTakenOut) != undefined) {
-            entrySet.val(userStorage.getItem(hoursTakenOut))
+        if (userStorage.getItem(hoursTakenOut) != undefined) {
+            entrySet.value = (userStorage.getItem(hoursTakenOut))
         }
     }
 }
 
+getUserEvents()
+
 function saveUserEvents(event) {
     event.preventDefault
-    var target = $(evenet.target)
+    var target = $(event.target)
     var eventHour = target.siblings(".hour").text()
     var eventData = target.siblings("textarea").val()
     userStorage.setItem(eventHour, eventData)
 
 }
+
+//save btn
+var saveBtnEvent = $(".saveBtn")
+saveBtnEvent.click(saveUserEvents)
