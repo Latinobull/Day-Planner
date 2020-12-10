@@ -5,13 +5,10 @@ var userStorage = window.localStorage
 var dt = luxon.DateTime.local()
 var currentHour = dt.hour
 
-// current day
-    let todayDate =  Object.assign(luxon.DateTime.DATE_FULL, { weekday: "long"})
+    var todayDate =  Object.assign(luxon.DateTime.DATE_FULL, { weekday: "long"})
     currentDayEl.text(JSON.stringify(dt.toLocaleString(luxon.DateTime.DATE_FULL)))
-    console.log( dt.toLocaleString(todayDate))
    
 
-//make timeblocks
 for (var i = 9; i < 19; i++) {
     var newTimeBlock = $("<div>")
     newTimeBlock.attr("class", "row")
@@ -24,7 +21,6 @@ for (var i = 9; i < 19; i++) {
     newHour.attr("value", i)
     newHour.text(i)
     newTimeBlock.append(newHour)
-    console.log(newHour.val())
 
     var textBox = $("<textarea>")
     textBox.attr("class", "description col-8")
@@ -41,9 +37,8 @@ for (var i = 9; i < 19; i++) {
     colorHours(i, textBox)
 }
 
-// css timeblock
 function colorHours(hour, eventColor) {
-    console.log(currentHour)
+    
     if(hour < currentHour) {
         eventColor.attr("class", "past description col-8") 
     }else if (hour == currentHour) {
@@ -53,8 +48,6 @@ function colorHours(hour, eventColor) {
     }
 }
 
-
-//local storage
 function getUserEvents() {
     for (var o = 0; o < containerEl.children().length; o++) {
         var hoursTakenOut =  containerEl.children().get(o).children[0].textContent
@@ -76,6 +69,5 @@ function saveUserEvents(event) {
 
 }
 
-//save btn
 var saveBtnEvent = $(".saveBtn")
 saveBtnEvent.click(saveUserEvents)
