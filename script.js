@@ -4,7 +4,7 @@ var containerEl = $(".container")
 var userStorage = window.localStorage
 var dt = luxon.DateTime.local()
 var currentHour = dt.hour
-console.log(currentHour)
+
 // current day
     let todayDate =  Object.assign(luxon.DateTime.DATE_FULL, { weekday: "long"})
     currentDayEl.text(JSON.stringify(dt.toLocaleString(luxon.DateTime.DATE_FULL)))
@@ -38,18 +38,18 @@ for (var i = 9; i < 19; i++) {
     save.html("<i class= 'fas fa-save'> <br> Save</i>")
     newTimeBlock.append(save)
 
+    colorHours(i, textBox)
 }
 
-//css timeblock
-function colorHours() {
-
-    if(newHour.value < currentHour) {
-        eventSlot.attr("class", "past description col-10")
-        console.log(newHour.val()) 
+// css timeblock
+function colorHours(hour, eventColor) {
+    console.log(currentHour)
+    if(hour < currentHour) {
+        eventColor.attr("class", "past description col-8") 
     }else if (hour == currentHour) {
-        eventSlot.attr("class", "present description col-10")
+        eventColor.attr("class", "present description col-8")
     }else if (hour > currentHour) {
-        eventSlot.attr("class", "future description col-10")
+        eventColor.attr("class", "future description col-8")
     }
 }
 
