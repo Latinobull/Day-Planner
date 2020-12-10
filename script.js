@@ -21,7 +21,7 @@ for (var i = 9; i < 19; i++) {
 
     var newHour = $("<aside>")
     newHour.attr("class", "hour col-2")
-    newHour.attr("id", "hour" + i)
+    newHour.attr("id", "hour")
     newHour.text(i)
     newTimeBlock.append(newHour)
 
@@ -37,13 +37,21 @@ for (var i = 9; i < 19; i++) {
     save.html("<i class= 'fas fa-save'> <br> Save</i>")
     newTimeBlock.append(save)
 
+    colorHours("#hour", textBox)
 }
 
-
-
-
 //css timeblock
+function colorHours(hour, eventSlot) {
 
+    if(hour < currentHour) {
+        eventSlot.attr("class", "past description col-10")
+        console.log(hour)
+    }else if (hour == currentHour) {
+        eventSlot.attr("class", "present description col-10")
+    }else if (hour > currentHour) {
+        eventSlot.attr("class", "future description col-10")
+    }
+}
 
 
 //local storage
