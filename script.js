@@ -24,7 +24,7 @@ for (var i = 9; i < 19; i++) {
     newHour.attr("value", i)
     newHour.text(i)
     newTimeBlock.append(newHour)
-    console.log(newHour.val)
+    console.log(newHour.val())
 
     var textBox = $("<textarea>")
     textBox.attr("class", "description col-8")
@@ -60,7 +60,16 @@ function getUserEvents() {
         var hoursTakenOut =  containerEl.children().get(o).children[0].text()
         var entrySet = containerEl.children().get(o).children[1]
         if (scheduleStorage.getItem(hoursTakenOut) != undefined) {
-            entrySet.val(containerEl.getItem(hoursTakenOut))
+            entrySet.val(userStorage.getItem(hoursTakenOut))
         }
     }
+}
+
+function saveUserEvents(event) {
+    event.preventDefault
+    var target = $(evenet.target)
+    var eventHour = target.siblings(".hour").text()
+    var eventData = target.siblings("textarea").val()
+    userStorage.setItem(eventHour, eventData)
+
 }
